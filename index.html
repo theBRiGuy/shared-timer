@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Shared timer</title>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+		<script src="lib/moment.js"></script>
+
+		<script>
+
+			function init() {
+				$('#activity').click(simulateActivity);
+				$(document).on('mousemove scroll', simulateActivity);
+				startTimer();
+			}
+
+			function getTimeSinceIdle() {
+				var startTime;
+				if (Cookies.get('lastActivity')) {
+					startTime = moment(Cookies.get('lastActivity'), 'x');
+				} else {
+					startTime = moment();
+					Cookies.set('lastActivity', startTime.valueOf());
+				}
+				return moment().diff(startTime, 'seconds');
+			}
+
+			function startTimer() {
+				setInterval(function(){
+					$('#idleTime').html(getTimeSinceIdle());
+				}, 1000);
+			}
+
+			function simulateActivity(){
+				Cookies.set('lastActivity', moment().valueOf());
+			}
+			$(document).ready(init);
+		</script>
+	</head>
+	<body>
+		<div>Time idle: <span id="idleTime"></span> seconds</div>
+		<button id="activity">Simulate activity</button>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus sed velit dignissim euismod. Suspendisse id ullamcorper orci. Suspendisse feugiat tortor eros, vel vehicula sem sollicitudin ut. Ut orci nibh, commodo a metus eget, tempus venenatis sem. Vivamus lectus sapien, dictum et dolor et, dapibus vehicula purus. Praesent quis odio tincidunt, pretium velit convallis, gravida metus. Quisque fermentum lectus et odio convallis, in mattis leo suscipit.
+		</p>
+		<p>
+			Vivamus eget finibus libero, vitae congue libero. Curabitur fermentum feugiat urna sed sodales. Donec posuere hendrerit urna. Suspendisse efficitur malesuada libero, in lacinia est dignissim eu. Cras vitae elit sed nibh ullamcorper tempus. Cras interdum lectus in tortor pulvinar, vitae pharetra metus gravida. Pellentesque quis quam non nisl suscipit blandit nec a est. Phasellus molestie enim in imperdiet ornare. Pellentesque quis eleifend quam, sed eleifend neque. Sed ullamcorper, nisi sed convallis commodo, lorem purus lobortis est, nec porta erat elit a arcu. Phasellus ligula lacus, volutpat et fringilla vel, venenatis quis sapien. Sed vitae malesuada nunc, a lobortis neque. Integer cursus enim in lorem semper, eu ullamcorper ligula luctus.
+		</p>
+		<p>
+			Pellentesque dui ligula, dictum nec metus non, dignissim ultrices elit. Aliquam erat volutpat. Maecenas sit amet tortor sed lorem luctus eleifend. Integer sollicitudin, magna in hendrerit ullamcorper, lorem risus malesuada lectus, sit amet rutrum libero enim nec elit. Maecenas ut rutrum enim, vitae bibendum orci. Quisque dapibus nisi velit, sed rhoncus leo sollicitudin ultrices. Pellentesque sagittis tellus vel volutpat rhoncus. Fusce porttitor varius mi, nec imperdiet lorem hendrerit eget. Donec vel ligula eget augue egestas feugiat et id ipsum.
+		</p>
+		<p>
+			Aliquam finibus maximus maximus. Aenean vel ipsum ut dui imperdiet posuere ut quis augue. Quisque maximus purus ac odio dignissim efficitur. Nunc mattis imperdiet pretium. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ornare pellentesque consectetur. Curabitur lectus nulla, dictum quis ultrices vel, posuere eget nulla. Pellentesque auctor pharetra odio, vel dapibus tortor placerat at. Etiam luctus ante et massa varius, vel porta nunc ullamcorper. Sed accumsan, massa sed ultricies tincidunt, est orci dapibus justo, in facilisis sem purus et orci. Aenean suscipit leo lorem, id commodo nisl tristique eu. Aenean quis cursus magna, sed volutpat odio. Curabitur a consequat enim. Duis ultricies leo eu nibh condimentum, vitae finibus purus fermentum.
+		</p>
+		<p>
+			Fusce at dictum metus. Nullam non augue nec lacus imperdiet iaculis sed dictum justo. Suspendisse congue laoreet dapibus. Proin porttitor neque mauris, non bibendum libero iaculis quis. Fusce eu ullamcorper tellus, et tincidunt nibh. Quisque vitae leo ex. Etiam lacinia magna ac nisi condimentum euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sit amet pretium ligula. Curabitur semper malesuada nibh, a dignissim dui ultrices nec. Nam bibendum est velit, id pulvinar erat pretium id. Quisque tristique facilisis augue ut ultrices.
+		</p>
+	</body>
+</html>
