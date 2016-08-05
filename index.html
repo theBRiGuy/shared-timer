@@ -2,6 +2,14 @@
 <html>
 	<head>
 		<title>Shared timer</title>
+
+		<style type="text/css">
+			#idleTime {
+				font-size: 4rem;
+				color: green;
+			}
+		</style>
+
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
 		<script src="lib/moment.js"></script>
@@ -10,7 +18,7 @@
 
 			function init() {
 				$('#activity').click(simulateActivity);
-				$(document).on('mousemove scroll', simulateActivity);
+				// $(document).on('mousemove scroll', simulateActivity);
 				startTimer();
 			}
 
